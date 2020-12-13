@@ -291,12 +291,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: "\u8DF3\u8E8D\u958B\u95DC"
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: "\u8E72\u4E0B\u958B\u95DC"
     m_Type: 4
     m_DefaultFloat: 0
