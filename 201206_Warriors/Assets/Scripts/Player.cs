@@ -35,34 +35,83 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region 方法
+
+    /// <summary>
+    /// 移動
+    /// </summary>
     private void Move()
     {
-        print("移動");
+      
     }
 
+    /// <summary>
+    /// 跳躍
+    /// </summary>
     private void Jump()
     {
-        print("跳躍");
+        
     }
 
+    /// <summary>
+    /// 開槍
+    /// </summary>
     private void Shot()
     {
-        print("開槍");
+      
     }
 
-    private void Hurtanddie(int Hurt, string Die)
+    /// <summary>
+    /// 受傷
+    /// </summary>
+    /// <param name="getDamege">造成的傷害</param>
+    private void Demage(float getDamege)
     {
-        print("受傷:"+ Hurt);
-        print("死亡:"+ Die);
+      
     }
 
-    
+    /// <summary>
+    /// 死亡
+    /// </summary>
+    private void Dead()
+    {
+
+    }
+
+    #endregion
+
+    #region 靜態屬性和方法
 
     private void Start()
     {
-        Move();
-        Jump();
-        Shot();
-        Hurtanddie(120,"被石頭");       
+        print("所有攝影機的數量:" + Camera.allCamerasCount);
+
+
+        Physics2D.gravity = new Vector2(0, -20);
+        print("2D的重力大小:" + Physics2D.gravity);
+
+        Application.OpenURL("https://www.youtube.com/?gl=TW&hl=zh-TW");
+
+        print("9.999去小數點:" + Mathf.Floor(9.999f));
+
+        print("取得兩點的距離" + Vector3.Distance(new Vector3(1, 1, 1), new Vector3(22,22,22)));
+
+
+
+       
+
+
+        
     }
+
+    private void Update()
+    {
+        //print("是否輸入任意鍵" + Input.anyKeyDown);
+        //print("遊戲經過時間" + Time.time);
+        print("是否按下空白鍵" + Input.GetKeyDown("space"));
+    }
+
+
+    #endregion
+
 }
