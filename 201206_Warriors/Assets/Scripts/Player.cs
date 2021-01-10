@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float speed = 10.5f;
 
     [Header("跳躍高度"), Range(0, 3000)]
-    public int height = 100;
+    public int height = 1000;
 
     [Header("是否在地板上"), Tooltip("是否在地板上")]
     public bool onFloor = false;
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
     }
 
 
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
     {
         GetHorizontal();
         Move();
+        Jump();
     }
 
 
@@ -67,6 +69,17 @@ public class Player : MonoBehaviour
     private void Move()
     {
         rig.velocity = new Vector2(h * speed, rig.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            transform.localEulerAngles = Vector3.zero;
+        }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) 
+        {
+            transform.localEulerAngles = new Vector3(0,180,0);
+        }
+
+        ani.SetBool("跑步開關", h!= 0);
     }
 
     /// <summary>
@@ -74,7 +87,11 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        
+        if(onFloor && Input.GetKeyDown(KeyCode.Space))
+        {
+            rig.AddForce(new Vector2(0, height));
+            onFloor = false;
+        }
     }
 
     /// <summary>
