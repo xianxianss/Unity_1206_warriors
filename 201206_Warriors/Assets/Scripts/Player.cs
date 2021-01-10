@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float speed = 10.5f;
 
     [Header("跳躍高度"), Range(0, 3000)]
-    public int height = 1000;
+    public int jump = 500;
 
     [Header("是否在地板上"), Tooltip("是否在地板上")]
     public bool onFloor = false;
@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
 
     [Header("血量"), Range(0, 200)]
     public float hp = 100;
+
+    [Header("地面判定位移")]
+    public Vector3 offset;
+
+    [Header("地面判定半徑")]
+    public float radius = 0.3f;
+
 
     private AudioSource aud;
     private Rigidbody2D rig;
@@ -51,6 +58,11 @@ public class Player : MonoBehaviour
         Jump();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.35f);
+        Gizmos.DrawSphere(transform.position + offset , radius);
+    }
 
 
 
@@ -89,9 +101,23 @@ public class Player : MonoBehaviour
     {
         if(onFloor && Input.GetKeyDown(KeyCode.Space))
         {
-            rig.AddForce(new Vector2(0, height));
+            rig.AddForce(new Vector2(0, jump));
+            ani.SetTrigger("跳躍觸發");
+        }
+
+        Collider2D hit = Physics2D.OverlapCircle(transform.position + offset, radius, 1 << 8);
+
+        if(hit)
+        {
+            onFloor = true;
+        }
+        else
+        {
             onFloor = false;
         }
+
+        ani.SetFloat("跳躍", rig.velocity.y);
+        ani.SetBool("是否在地面上", onFloor);
     }
 
     /// <summary>
