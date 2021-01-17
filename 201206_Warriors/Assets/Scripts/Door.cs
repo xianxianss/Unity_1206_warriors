@@ -20,7 +20,7 @@ public class Door : MonoBehaviour
         if (collision.name == "戰士" && key == null)
         {
             ani.SetTrigger("開門");
-            aud.PlayOneShot(soundOpen, Random.Range(1.5f, 2.3f));
+            aud.PlayOneShot(soundOpen, Random.Range(1.2f, 1.5f));
         }
     }
 }
