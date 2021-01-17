@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     [Header("地面判定半徑")]
     public float radius = 0.3f;
 
+    [Header("鑰匙音效")]
+    public AudioClip soundKey;
 
     private AudioSource aud;
     private Rigidbody2D rig;
@@ -86,6 +88,7 @@ public class Player : MonoBehaviour
         if (collision.tag == ("key"))
         {
             Destroy(collision.gameObject);
+            aud.PlayOneShot(soundKey, Random.Range(1.5f, 2.3f));
         }
     }
 
