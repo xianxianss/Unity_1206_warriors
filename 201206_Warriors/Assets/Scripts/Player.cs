@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
     }
 
 
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
         GetHorizontal();
         Move();
         Jump();
+        Shot();
     }
 
     private void OnDrawGizmos()
@@ -74,6 +76,19 @@ public class Player : MonoBehaviour
     {
         h = Input.GetAxis("Horizontal");
     }
+
+    /// <summary>
+    /// 觸發事件
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == ("key"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 
     /// <summary>
     /// 移動
@@ -125,7 +140,12 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Shot()
     {
-      
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            aud.PlayOneShot(gunshotSound, Random.Range(1.2f, 1.5f));
+           GameObject temp = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
+            temp.GetComponent<Rigidbody2D>().AddForce(bulletPosition.right * bulletSpeed + bulletPosition.up * 150);
+        }
     }
 
     /// <summary>
