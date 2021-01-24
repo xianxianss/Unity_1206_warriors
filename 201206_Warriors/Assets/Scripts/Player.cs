@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -41,9 +42,15 @@ public class Player : MonoBehaviour
     [Header("鑰匙音效")]
     public AudioClip soundKey;
 
+    [Header("血量文字")]
+    public Text textHp;
+    [Header("血量圖片")]
+    public Image imgHp;
+
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
+    private float hpMax;
 
     #endregion
 
@@ -54,6 +61,7 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
+        hpMax = hp;
     }
 
 
@@ -160,9 +168,14 @@ public class Player : MonoBehaviour
     /// 受傷
     /// </summary>
     /// <param name="getDamege">造成的傷害</param>
-    private void Demage(float getDamege)
+    public void Damage (float damage)
     {
-      
+        hp -= damage;
+      //ani.SetTrigger("受傷觸發");
+        textHp.text = hp.ToString();
+        imgHp.fillAmount = hp / hpMax;
+
+        if (hp <= 0) Dead();
     }
 
     /// <summary>

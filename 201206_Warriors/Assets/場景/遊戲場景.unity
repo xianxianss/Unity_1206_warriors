@@ -512,11 +512,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  rangeAtk: 2
+  rangeAtk: 3
   attack: 10
+  attackCD: 3.5
   hp: 2500
   textHp: {fileID: 1444241023}
   imgHp: {fileID: 1613353892}
+  offsetAttack: {x: 1.74, y: 0.24, z: 0}
+  sizeAttack: {x: 1.46, y: 4.07, z: 4.25}
+  attackDelay: 0.7
 --- !u!70 &381905099
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -7414,7 +7418,7 @@ GameObject:
   - component: {fileID: 1271987264}
   - component: {fileID: 1271987266}
   - component: {fileID: 1271987267}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6230\u58EB"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7567,6 +7571,8 @@ MonoBehaviour:
   offset: {x: 0, y: -1.49, z: 0}
   radius: 0.2
   soundKey: {fileID: 8300000, guid: ae931ed02324602478b4a0e90878e4d5, type: 3}
+  textHp: {fileID: 1768460471}
+  imgHp: {fileID: 532044697}
   h: 0.42
 --- !u!82 &1271987267
 AudioSource:
@@ -9303,6 +9309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1271987263}
   speed: 3.5
+  shakeInterval: 0.05
+  shakeValue: 0.5
 --- !u!1 &2010084786
 GameObject:
   m_ObjectHideFlags: 0
