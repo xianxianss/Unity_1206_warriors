@@ -11,7 +11,7 @@ public class LearnLerp : MonoBehaviour
     void Start()
     {
         float result = Mathf.Lerp(0, 10, 0.5f);
-        print("0與10差值結果:" + result);
+      //print("0與10差值結果:" + result);
 
     }
     private void Update()

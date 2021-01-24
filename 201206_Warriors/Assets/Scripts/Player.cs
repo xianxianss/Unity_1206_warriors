@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [Header("子彈速度"), Range(0, 5000)]
     public int bulletSpeed = 800;
 
+    [Header("子彈傷害"), Range(0, 5000)]
+    public float damageBullet = 50;
+
     [Header("開槍音效"), Tooltip("選擇開槍音效")]
     public AudioClip gunshotSound;
 
@@ -148,6 +151,8 @@ public class Player : MonoBehaviour
             aud.PlayOneShot(gunshotSound, Random.Range(1.2f, 1.5f));
            GameObject temp = Instantiate(bullet, bulletPosition.position, bulletPosition.rotation);
             temp.GetComponent<Rigidbody2D>().AddForce(bulletPosition.right * bulletSpeed + bulletPosition.up * 150);
+
+            temp.AddComponent<Bullet>().attack = damageBullet;
         }
     }
 
