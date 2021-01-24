@@ -521,6 +521,31 @@ MonoBehaviour:
   offsetAttack: {x: 1.74, y: 0.24, z: 0}
   sizeAttack: {x: 1.46, y: 4.07, z: 4.25}
   attackDelay: 0.7
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 814969364}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1055560296}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!70 &381905099
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6799,6 +6824,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776629381}
   m_CullTransparentMesh: 0
+--- !u!1 &814969364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8848329325741041711, guid: a0d8d6d2e45a14a499cbeec093713bcf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1542576996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &830710431
 GameObject:
   m_ObjectHideFlags: 0
@@ -7235,7 +7266,7 @@ GameObject:
   - component: {fileID: 1032730760}
   - component: {fileID: 1032730761}
   m_Layer: 0
-  m_Name: pistol2
+  m_Name: "\u69CD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7305,6 +7336,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1055560296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8848329325741041711, guid: a0d8d6d2e45a14a499cbeec093713bcf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2090284421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1167376643
 GameObject:
   m_ObjectHideFlags: 0
@@ -8094,7 +8131,7 @@ PrefabInstance:
     - target: {fileID: 8848329325741041708, guid: a0d8d6d2e45a14a499cbeec093713bcf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.4
+      value: 9.26
       objectReference: {fileID: 0}
     - target: {fileID: 8848329325741041708, guid: a0d8d6d2e45a14a499cbeec093713bcf,
         type: 3}
@@ -8144,7 +8181,12 @@ PrefabInstance:
     - target: {fileID: 8848329325741041711, guid: a0d8d6d2e45a14a499cbeec093713bcf,
         type: 3}
       propertyPath: m_Name
-      value: "\u50B3\u9001\u9580"
+      value: "\u50B3\u9001\u9580(\u9AB7\u9ACF)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848329325741041711, guid: a0d8d6d2e45a14a499cbeec093713bcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0d8d6d2e45a14a499cbeec093713bcf, type: 3}
@@ -9311,6 +9353,7 @@ MonoBehaviour:
   speed: 3.5
   shakeInterval: 0.05
   shakeValue: 0.5
+  shakeCount: 3
 --- !u!1 &2010084786
 GameObject:
   m_ObjectHideFlags: 0
@@ -70864,7 +70907,12 @@ PrefabInstance:
     - target: {fileID: 8848329325741041711, guid: a0d8d6d2e45a14a499cbeec093713bcf,
         type: 3}
       propertyPath: m_Name
-      value: "\u50B3\u9001\u9580 (1)"
+      value: "\u50B3\u9001\u9580 (\u4E0A\u5C64)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848329325741041711, guid: a0d8d6d2e45a14a499cbeec093713bcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0d8d6d2e45a14a499cbeec093713bcf, type: 3}

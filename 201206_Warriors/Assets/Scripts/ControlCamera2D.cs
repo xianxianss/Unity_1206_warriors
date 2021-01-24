@@ -12,6 +12,8 @@ public class ControlCamera2D : MonoBehaviour
     public float shakeInterval = 0.05f;
     [Header("晃動值"), Range(0, 5)]
     public float shakeValue = 0.5f;
+    [Header("晃動次數"), Range(0, 10)]
+    public int shakeCount = 3;
 
 
     /// <summary>
@@ -38,6 +40,7 @@ public class ControlCamera2D : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ShakeCamera()
     {
+        /**
         transform.position += Vector3.up * shakeInterval;
         yield return new WaitForSeconds(shakeInterval);
         transform.position -= Vector3.up * shakeInterval;
@@ -50,5 +53,14 @@ public class ControlCamera2D : MonoBehaviour
         yield return new WaitForSeconds(shakeInterval);
         transform.position -= Vector3.up * shakeInterval;
         yield return new WaitForSeconds(shakeInterval);
+    */
+        for(int i = 0; i< shakeCount;i++)
+        {
+            transform.position += Vector3.up * shakeInterval;
+            yield return new WaitForSeconds(shakeInterval);
+            transform.position -= Vector3.up * shakeInterval;
+            yield return new WaitForSeconds(shakeInterval);
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;  //引用 介面 API
+using UnityEngine.Events;  //引用 事件 API
 using System.Collections;  //引用 系統.集合 API -協同程序需要
 
 [RequireComponent(typeof(AudioSource), typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
@@ -25,6 +26,8 @@ public class Enemy : MonoBehaviour
     public Vector3 sizeAttack;
     [Header("攻擊延遲傳送給玩家時間"), Range(0, 10)]
     public float attackDelay = 0.7f;
+    [Header("死亡事件")]
+    public UnityEvent onDead;
 
     private Animator ani;
     private AudioSource aud;
@@ -57,6 +60,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (ani.GetBool("死亡開關")) return; //如果 死亡開關 已勾選 就跳出
         Move();
     }
 
@@ -79,6 +83,8 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Dead()
     {
+        onDead.Invoke();
+
         hp = 0;
         textHp.text = 0.ToString();
         ani.SetBool("死亡開關", true);

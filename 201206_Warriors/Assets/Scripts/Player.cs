@@ -183,7 +183,11 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Dead()
     {
-
+        hp = 0;
+        textHp.text = 0.ToString();
+        ani.SetBool("死亡開關", true);
+        enabled = false;
+        transform.Find("槍").gameObject.SetActive(false);
     }
 
     #endregion
