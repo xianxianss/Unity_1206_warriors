@@ -45,6 +45,9 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = new Color(0, 1, 0, 0.5f);
         Gizmos.DrawCube(transform.position + transform.right * offsetAttack.x + transform.up * offsetAttack.y, sizeAttack);
+
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawSphere(transform.position, rangeAtk);
     }
 
     private void Start()
@@ -75,6 +78,7 @@ public class Enemy : MonoBehaviour
         textHp.text = hp.ToString();
         imgHp.fillAmount = hp / hpMax;
 
+        if (hp <= hpMax * 0.8f) rangeAtk = 20;   //血量低於 八成 就進入 第二階段
         if (hp <= 0) Dead();
     }
 
@@ -100,6 +104,10 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Move()
     {
+        //如果 動畫是 骷髏攻擊 或 骷髏受傷 就跳出
+        AnimatorStateInfo info = ani.GetCurrentAnimatorStateInfo(0);
+        if (info.IsName("骷髏攻擊") || info.IsName("骷髏受傷")) return;
+
         /** 判斷式寫法
         if (transform.position.x > player.transform.position.x)
         {

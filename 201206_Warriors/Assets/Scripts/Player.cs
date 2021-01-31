@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator ani;
     private float hpMax;
+    private SpriteRenderer spr;
 
     #endregion
 
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
+        spr = GetComponent<SpriteRenderer>(); 
         hpMax = hp;
     }
 
@@ -174,6 +177,7 @@ public class Player : MonoBehaviour
       //ani.SetTrigger("受傷觸發");
         textHp.text = hp.ToString();
         imgHp.fillAmount = hp / hpMax;
+        StartCoroutine(DamageEffect());
 
         if (hp <= 0) Dead();
     }
@@ -187,7 +191,25 @@ public class Player : MonoBehaviour
         textHp.text = 0.ToString();
         ani.SetBool("死亡開關", true);
         enabled = false;
+        rig.Sleep();
         transform.Find("槍").gameObject.SetActive(false);
+    }
+
+    private IEnumerator DamageEffect()
+    {
+        Color red = new Color(1, 0.1f, 0.1f);  //受傷顏色
+        float interval = 0.05f;
+
+        for (int i = 0; i < 5; i++)
+        {
+            spr.color = red;                       //指定紅色
+            yield return new WaitForSeconds(0.1f); //等待
+            spr.color = Color.white;               //恢復白色
+            yield return new WaitForSeconds(0.1f); //等待
+        }
+      
+
+
     }
 
     #endregion
