@@ -35,6 +35,9 @@ public class Enemy : MonoBehaviour
     private float hpMax;
     private Player player;
     private ControlCamera2D cam;
+    private bool isSecond;
+    private ParticleSystem psSecond;
+
     /// <summary>
     /// 計時器
     /// </summary>
@@ -59,6 +62,7 @@ public class Enemy : MonoBehaviour
 
         player = FindObjectOfType<Player>(); //透過類型尋找物件<類型>() -不能是重複物件
         cam = FindObjectOfType<ControlCamera2D>();
+        psSecond = GameObject.Find("骷髏二階段攻擊特效").GetComponent<ParticleSystem>();
     }
 
     private void Update()
