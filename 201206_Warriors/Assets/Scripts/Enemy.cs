@@ -82,8 +82,13 @@ public class Enemy : MonoBehaviour
         textHp.text = hp.ToString();
         imgHp.fillAmount = hp / hpMax;
 
-        if (hp <= hpMax * 0.8f) rangeAtk = 20;   //血量低於 八成 就進入 第二階段
-        if (hp <= 0) Dead();
+        if (hp <= hpMax * 0.8f)
+        {
+            isSecond = true;  //進入第二階段
+            rangeAtk = 20;   //血量低於 八成 就進入 第二階段
+        }
+
+        if (hp <= 0) Dead();  //如果 血量 <=0 就死亡
     }
 
     /// <summary>
@@ -177,7 +182,10 @@ public class Enemy : MonoBehaviour
         Collider2D hit = Physics2D.OverlapBox(transform.position + transform.right * offsetAttack.x + transform.up * offsetAttack.y, sizeAttack, 0, 1 << 9);
         //如果 碰到物件 存在 玩家.受傷(攻擊力)
         if (hit) player.Damage(attack);
-
+        //啟動(晃動攝影機效果())
         StartCoroutine(cam.ShakeCamera());
+
+        //如果是第二階段 就播放特效
+        if (isSecond) psSecond.Play();
     }
 }

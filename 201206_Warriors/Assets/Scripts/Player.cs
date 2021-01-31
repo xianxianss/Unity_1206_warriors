@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -47,6 +46,9 @@ public class Player : MonoBehaviour
     public Text textHp;
     [Header("血量圖片")]
     public Image imgHp;
+
+    [Header("結束畫面")]
+    public GameObject panelGameOver;
 
     private AudioSource aud;
     private Rigidbody2D rig;
@@ -187,6 +189,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Dead()
     {
+        panelGameOver.SetActive(true);
         hp = 0;
         textHp.text = 0.ToString();
         ani.SetBool("死亡開關", true);
